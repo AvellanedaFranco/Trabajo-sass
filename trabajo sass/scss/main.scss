@@ -1,6 +1,110 @@
 @import "footer";
 @import "header";
 
-/*Header: #A69EBA
-  Productos; #F7E7CE
-  Footer: #A69EBA*/
+@keyframes aparecer{
+  from{
+    opacity: 0;
+  }to{
+    opacity: 1;
+  }
+}
+
+@keyframes desplazar-izq{
+  from{
+    left: 200px;
+  }to{
+    left: 0px;
+  }
+}
+
+@keyframes desplazar-der{
+  from{
+    right: 200px;
+  }to{
+    right: 0px;
+  }
+}
+
+$seg: 2s;
+
+$animaciones:(
+    1: desplazar-izq,
+    2: aparecer,
+    3: aparecer,
+    4: desplazar-der,
+    5: desplazar-izq,
+    6: aparecer,
+    7: aparecer,
+    8: desplazar-der,
+    9: desplazar-izq,
+    10: aparecer,
+    11: aparecer,
+    12: desplazar-der,
+    13: desplazar-izq,
+    14: aparecer,
+    15: aparecer,
+    16: desplazar-der,
+    17: desplazar-izq,
+    18: aparecer,
+    19: aparecer,
+    20: desplazar-der,
+    21: desplazar-izq,
+    22: aparecer,
+    23: aparecer,
+    24: desplazar-der,
+    25: desplazar-izq,
+    26: aparecer,
+    27: aparecer,
+    28: desplazar-der,
+    29: aparecer,
+    30: aparecer,
+);
+
+@each $num, $anim in animaciones{
+  .prod#{$num}{
+    animation-duration: $seg;
+  }
+}
+
+$bordeProd: solid 2px #A69EBA;
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.grad{
+  background-image: linear-gradient(to top, #A69EBA, #F7E7CE);
+  height: 100px;
+}
+
+
+@mixin medidasPerf($ancho, $alto){
+  height: $alto;
+  width: $ancho;
+}
+
+main{
+  background-color: #F7E7CE;
+  display: flex;
+  text-align: center;
+
+  div{
+    border: $bordeProd;
+
+    h2{
+      background-color: white;
+      border-radius: 12%;
+    }
+
+    h3{
+        background-color: white;
+        border-radius: 8%;
+    }
+    }
+
+    img{
+      @include medidasPerf(200px, 200px)
+    }
+  
+}
