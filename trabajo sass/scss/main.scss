@@ -1,110 +1,64 @@
-@import "footer";
-@import "header";
+/*Importar archivos y estructuras*/
+@import "menu";
 
-@keyframes aparecer{
-  from{
-    opacity: 0;
-  }to{
-    opacity: 1;
-  }
+/*Variables*/
+$colorTitulo: red;
+$borderTitulo: solid 2px aqua;
+
+header{
+    background-color: black;
 }
 
-@keyframes desplazar-izq{
-  from{
-    left: 200px;
-  }to{
-    left: 0px;
-  }
+.contBordes{
+    border: solid 3px black;
 }
 
-@keyframes desplazar-der{
-  from{
-    right: 200px;
-  }to{
-    right: 0px;
-  }
+h1{
+    color: $colorTitulo;
+    border: $borderTitulo;
 }
 
-$seg: 2s;
-
-$animaciones:(
-    1: desplazar-izq,
-    2: aparecer,
-    3: aparecer,
-    4: desplazar-der,
-    5: desplazar-izq,
-    6: aparecer,
-    7: aparecer,
-    8: desplazar-der,
-    9: desplazar-izq,
-    10: aparecer,
-    11: aparecer,
-    12: desplazar-der,
-    13: desplazar-izq,
-    14: aparecer,
-    15: aparecer,
-    16: desplazar-der,
-    17: desplazar-izq,
-    18: aparecer,
-    19: aparecer,
-    20: desplazar-der,
-    21: desplazar-izq,
-    22: aparecer,
-    23: aparecer,
-    24: desplazar-der,
-    25: desplazar-izq,
-    26: aparecer,
-    27: aparecer,
-    28: desplazar-der,
-    29: aparecer,
-    30: aparecer,
+/*Maps*/
+/*Se suelen usar cuando tenemos varios elementos con una leve diferencia*/
+$coloresDivs:(
+    1: blue,
+    2: violet,
+    3: yellow,
 );
 
-@each $num, $anim in animaciones{
-  .prod#{$num}{
-    animation-duration: $seg;
-  }
+/*Ciclo - Each*/
+@each $num, $color in $coloresDivs{
+    .cont#{$num}{
+        height: 100px;
+        background-color: $color;
+    }
 }
 
-$bordeProd: solid 2px #A69EBA;
+$contColores:(
+    secElectro: orange,
+    secCelu: green,
+    secOfertas: aqua,
+);
 
-*{
-  margin: 0;
-  padding: 0;
+.cont4{
+    height: 150px;
+    background-color: map-get($contColores, secOfertas);
 }
 
-.grad{
-  background-image: linear-gradient(to top, #A69EBA, #F7E7CE);
-  height: 100px;
+/*Extend - Herencia*/
+.cont5{
+    @extend .cont4;
+    border-bottom: solid 4px red;
+
 }
 
-
-@mixin medidasPerf($ancho, $alto){
-  height: $alto;
-  width: $ancho;
+/*Mixin*/
+@mixin medidasFotos($ancho, $alto){
+    height: $alto;
+    width: $ancho;
 }
 
-main{
-  background-color: #F7E7CE;
-  display: flex;
-  text-align: center;
-
-  div{
-    border: $bordeProd;
-
-    h2{
-      background-color: white;
-      border-radius: 12%;
-    }
-
-    h3{
-        background-color: white;
-        border-radius: 8%;
-    }
-    }
-
-    img{
-      @include medidasPerf(200px, 200px)
-    }
-  
+.contFoto{
+    @include medidasFotos( 350px, 400px);
+    border: solid 4px red;
 }
